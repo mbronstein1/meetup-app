@@ -12,7 +12,7 @@ const handler = async (req, res) => {
     const result = await meetupsCollection.insertOne(data);
     console.log(result);
 
-    client.close();
+    await client.close();
 
     res.status(201).json({ message: 'Meetup inserted!' });
   }
