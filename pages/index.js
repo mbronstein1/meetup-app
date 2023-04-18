@@ -1,4 +1,3 @@
-import Layout from '@/components/layout/Layout';
 import MeetupList from '@/components/meetups/MeetupList';
 
 const DUMMY_MEETUPS = [
@@ -18,8 +17,29 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-const HomePage = () => {
-  return <MeetupList meetups={DUMMY_MEETUPS} />;
+const HomePage = ({ meetups }) => {
+  // const [loadedMeetups, setLoadedMeetups] = useState([]);
+
+  // useEffect(() => {
+  //   // fetch data
+  //   setLoadedMeetups(DUMMY_MEETUPS);
+  // }, []);
+
+  return <MeetupList meetups={meetups} />;
+};
+
+// NextJS function that prepares props for this page BEFORE component function is executed (allows fetched data to be displayed in source code during pre-rendering process)
+// This code is always secure because it never reaches the client. It is only executed during the build process.
+// Moves data fetching from client-side to server-side
+export const getStaticProps = async () => {
+  // fetch data from API or DB
+  // Always need to return an object w/ property that has to be named 'props'
+  // This prepares the props we want for this component
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
 };
 
 export default HomePage;
