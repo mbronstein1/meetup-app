@@ -39,7 +39,24 @@ export const getStaticProps = async () => {
     props: {
       meetups: DUMMY_MEETUPS,
     },
+    // The page will be regenerated on the server based on the value in seconds instead of having to re-build every time data changes
+    revalidate: 10,
   };
 };
+
+// This won't run during the build process but will always run on the server after deployment
+// Only use when:
+// Data is changing constantly (like faster than 1 second)
+// We need access to the request (like for user authentication to check req.session)
+// export const getServerSideProps = async context => {
+//   const req = context.req;
+//   const res = context.res;
+//   // fetch data from API or DB
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   };
+// };
 
 export default HomePage;
