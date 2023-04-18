@@ -9,7 +9,7 @@ const HomePage = ({ meetups }) => {
         <title>React/Next Meetups</title>
         <meta name='description' content='Browse a huge list of highly active React meetups!' />
       </Head>
-      <MeetupList meetups={meetups} />;
+      <MeetupList meetups={meetups} />
     </>
   );
 };
@@ -38,7 +38,7 @@ export const getStaticProps = async () => {
       })),
     },
     // The page will be regenerated on the server based on the value in seconds instead of having to re-build every time data changes
-    revalidate: 10,
+    revalidate: 1,
   };
 };
 
