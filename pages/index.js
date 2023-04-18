@@ -1,8 +1,17 @@
+import Head from 'next/head';
 import MeetupList from '@/components/meetups/MeetupList';
 import { MongoClient } from 'mongodb';
 
 const HomePage = ({ meetups }) => {
-  return <MeetupList meetups={meetups} />;
+  return (
+    <>
+      <Head>
+        <title>React/Next Meetups</title>
+        <meta name='description' content='Browse a huge list of highly active React meetups!' />
+      </Head>
+      <MeetupList meetups={meetups} />;
+    </>
+  );
 };
 
 // NextJS function that prepares props for this page BEFORE component function is executed (allows fetched data to be displayed in source code during pre-rendering process)
